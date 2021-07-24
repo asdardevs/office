@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Office;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HistoryController extends Controller
 {
@@ -13,7 +15,9 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        //
+        $office =Office::with('fakultas','prodi')->Where('status','1') ->orderBy('id', 'DESC')->get();
+       
+        return Inertia::render('Admin/History',['office'=> $office ]);
     }
 
     /**

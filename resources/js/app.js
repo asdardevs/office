@@ -21,4 +21,10 @@ createApp({
     .use(InertiaPlugin)
     .mount(el);
 
-InertiaProgress.init({ color: "#4B5563" });
+InertiaProgress.init({
+    color: "#29d", // Whether to include the default NProgress styles.
+    includeCSS: true,
+
+    // Whether the NProgress spinner will be shown.
+    showSpinner: true,
+});

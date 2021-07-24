@@ -183,12 +183,54 @@
                                 class="btn btn-primary"
                                 @click="simpan"
                             >
-                                Simpan
+                                <div v-if="onProgress == true">
+                                    <i class="fa fa-spinner fa-spin"></i>Loading
+                                </div>
+                                <div v-else>Simpan</div>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- modal komen -->
+            <div class="modal fade" id="komen">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-danger">
+                                Akun ditolak
+                            </h4>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="pesan-penolakan"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
         </admin-lte>
     </div>
 </template>
@@ -210,6 +252,7 @@ export default {
                 status: "",
                 id: "",
             }),
+            onProgress: false,
         };
     },
 
@@ -224,16 +267,40 @@ export default {
                 <th>${element.email}</th>
                 <th>${element.fakultas.nama_fakultas}</th>
                 <th>${element.prodi.nama_jurusan}</th>
-                <th><button type="button" class="btn btn-block btn-default btn-flat" ><i class="fas fa-file-download text-danger"></i></button></th>
+                <th><a href="/file-sk/${
+                    element.file
+                }"  target="_blank" class="btn btn-block btn-default btn-flat" ><i class="fas fa-file-download text-danger"></i></a></th>
                 <th> ${
                     element.status == null
                         ? '<span class="badge bg-primary">Menunggu</span>'
                         : '<span class="badge bg-danger">Ditolak</span>'
                 } </th>
-                <th><button type="button"  class="btn btn-block btn-primary btn-flat validasi" data-id="${
-                    element.id
-                }" >Validasi</button></th>
-               
+                
+               ${
+                   element.status == 2
+                       ? ` <th>
+                            <div class="row">
+                              <div class="col-md-8">
+                                <button
+                                  type="button"
+                                  class="btn btn-block btn-primary btn-flat"
+                                  disabled
+                                >
+                                  Validasi
+                                </button>
+                              </div>
+                              <div class="col-md-4">
+                                <button
+                                  type="button"
+                                  class="btn btn-block btn-default btn-flat komen" data-pesan="${element.pesan}"
+                                >
+                                  <i class="far fa-comment-dots"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </th>`
+                       : `<th><button type="button"  class="btn btn-block btn-primary btn-flat validasi" data-id="${element.id}" >Validasi</button> </th>`
+               } 
 
                 </tr>`;
             });
@@ -241,13 +308,17 @@ export default {
             $("#tabel-body").html(html);
         },
         simpan() {
+            var self = this;
+            this.onProgress = true;
             this.form.id = $("#get-id").val();
             this.form.post(this.route("permohonan.store"), {
                 preserveScroll: true,
                 onSuccess: () => {
+                    self.onProgress = false;
                     this.form.reset();
                     this.getTable();
                     this.renderGetId();
+                    this.renderPeasn();
                     $("#modal-validasi").modal("hide");
                     Swal.fire({
                         position: "top-end",
@@ -256,6 +327,9 @@ export default {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                },
+                onError: (errors) => {
+                    self.onProgress = false;
                 },
             });
         },
@@ -269,6 +343,13 @@ export default {
                 $("#modal-validasi").modal("show");
             });
         },
+        renderPeasn() {
+            $(".komen").click(function () {
+                const pesan = $(this).data("pesan");
+                $("#pesan-penolakan").html(pesan);
+                $("#komen").modal("show");
+            });
+        },
     },
 
     mounted: function () {
@@ -278,6 +359,17 @@ export default {
 
         this.getTable();
         this.renderGetId();
+        this.renderPeasn();
     },
 };
 </script>
+
+<style scoped>
+.buttonload {
+    background-color: #04aa6d; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+}
+</style>

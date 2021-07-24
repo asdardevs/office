@@ -2,7 +2,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar elevation-4 sidebar-light-warning">
         <!-- Brand Logo -->
-        <a href="/lte/index3.html" class="brand-link">
+        <inertia-link :href="route('beranda.index')" class="brand-link">
             <img
                 src="/lte/dist/img/unm1.png"
                 alt="AdminLTE Logo"
@@ -12,7 +12,7 @@
             <span class="brand-text font-weight-light"
                 ><span class="font-weight-bold">UNM </span>| Office 365</span
             >
-        </a>
+        </inertia-link>
 
         <!-- Sidebar -->
         <div class="sidebar">
@@ -63,6 +63,16 @@
                         </inertia-link>
                     </li>
                     <li class="nav-item">
+                        <inertia-link
+                            :href="route('history.index')"
+                            class="nav-link"
+                            :class="
+                                route().current('history.*') ? 'active' : ' '
+                            "
+                        >
+                            <i class="nav-icon fas fa-history"></i>
+                            <p>History Permohonan</p>
+                        </inertia-link>
                         <!-- <a href="history.html" class="nav-link">
                             <i class="nav-icon fas fa-history"></i>
                             <p>History Permohonan</p>
@@ -70,14 +80,11 @@
                     </li>
                     <li class="nav-item">
                         <inertia-link
-                            :href="route('logout')"
+                            :href="route('dashboard')"
                             class="nav-link text-danger"
                         >
-                            <i
-                                class="nav-icon fas fa-power-off"
-                                v-on:click="counter += 1"
-                            ></i>
-                            <p>Keluar</p>
+                            <i class="nav-icon fas fa-power-off"></i>
+                            <p>Site</p>
                         </inertia-link>
                     </li>
                 </ul>

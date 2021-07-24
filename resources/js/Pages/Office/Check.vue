@@ -26,8 +26,12 @@
             @click="cekAkun"
             class="btn btn-default btn-flat mb-3"
         >
-            Cek Akun Saya
+            <div v-if="onnProgress == true">
+                <i class="fa fa-spinner fa-spin"></i>Loading
+            </div>
+            <div v-else>Cek Akun Saya</div>
         </button>
+
         <button
             disabled
             v-else
@@ -120,6 +124,7 @@ export default {
             password: "",
             pesan: "",
             token: "",
+            onnProgress: "",
         };
     },
     methods: {
@@ -127,9 +132,9 @@ export default {
             // this.username = "asdar";
             // this.status = 1;
             var self = this;
-
+            this.onnProgress = true;
             $.get("office/" + this.token, function (data, status) {
-                console.log(data);
+                self.onnProgress = false;
                 if (data == 3) {
                     self.status = 3;
                 } else {
@@ -143,3 +148,13 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.buttonload {
+    background-color: #04aa6d; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+}
+</style>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Office;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Admin/Dashboard');
+        $pemohonan = Office::count();
+        $tolak = Office::where('status','2')->count();
+        $terima = Office::where('status','1')->count();
+        return Inertia::render('Admin/Dashboard',['permohonan'=>$pemohonan,'tolak'=>$tolak,'terima'=>$terima]);
     }
 
     /**

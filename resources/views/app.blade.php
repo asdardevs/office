@@ -27,7 +27,7 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <!-- css custom -->
         <link rel="stylesheet" href="{{url('lte')}}/dist/css/landing.css">
-
+       
      
         @routes
 

@@ -18,7 +18,9 @@
                                     <span class="info-box-text"
                                         >Total permohonan akun</span
                                     >
-                                    <span class="info-box-number"> 10 </span>
+                                    <span class="info-box-number">
+                                        {{ permohonan }}
+                                    </span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -36,7 +38,9 @@
                                     <span class="info-box-text"
                                         >Permohonan ditolak</span
                                     >
-                                    <span class="info-box-number">410</span>
+                                    <span class="info-box-number">{{
+                                        tolak
+                                    }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -58,7 +62,9 @@
                                     <span class="info-box-text"
                                         >Permohonan diterima</span
                                     >
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number">{{
+                                        terima
+                                    }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -79,8 +85,16 @@
 <script>
 import AdminLte from "@/Layouts/AdminLte";
 export default {
+    props: ["tolak", "terima", "permohonan"],
     components: {
         AdminLte,
+    },
+    data() {
+        return {
+            tolak: this.tolak,
+            terima: this.terima,
+            permohonan: this.permohonan,
+        };
     },
 };
 </script>
