@@ -25,7 +25,5 @@
         "vue": "^3.0.5",
         "vue-loader": "^16.1.2"
     },
-    "dependencies": {
-        "admin-lte": "^3.1.0"
-    }
+    "dependencies": {}
 }
