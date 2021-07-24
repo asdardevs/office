@@ -114,7 +114,7 @@ export default {
     },
 
     methods: {
-        getTable() {
+        getTableHistory() {
             var html = "";
             var no = 1;
             this.office.forEach((element) => {
@@ -140,7 +140,7 @@ export default {
             $("#tabel-body").html(html);
         },
 
-        renderGetId() {
+        renderGetIdHistory() {
             var self = this;
 
             $(".validasi").click(function () {
@@ -158,8 +158,8 @@ export default {
             $("#tabel").DataTable();
         });
 
-        this.getTable();
-        this.renderGetId();
+        this.getTableHistory();
+        this.renderGetIdHistory();
     },
 };
 </script>
