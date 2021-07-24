@@ -39,8 +39,8 @@
 
 <script>
 import Footer from "@/Components/Footer";
-import NavBar from "@/Components/NavBar";
-import SideBar from "@/Components/SideBar";
+import NavBar from "@/Components/Navbar";
+import SideBar from "@/Components/Sidebar";
 export default {
     components: {
         Footer,
