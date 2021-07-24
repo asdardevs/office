@@ -237,7 +237,7 @@
     </div>
 </template>
 
-<script>
+<script scoped>
 import AdminLte from "@/Layouts/AdminLte";
 
 export default {
