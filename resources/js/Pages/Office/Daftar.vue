@@ -9,53 +9,91 @@
         </p>
         <form>
             <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Nama Lengkap</label>
+                <label for="nama">Nama Lengkap</label>
                 <input
-                    type="email"
+                    type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
                     placeholder="Nama Lengkap"
+                    v-model="form.nama"
+                    :class="{ 'is-invalid': form.errors.nama }"
+                    autofocus="autofocus"
+                    autocomplete="off"
                 />
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.nama }"
+                >
+                    {{ form.errors.nama }}
+                </div>
             </div>
             <div class="form-group mb-4">
-                <label for="exampleInputEmail1">Email</label>
+                <label for="email">E-mail</label>
                 <input
                     type="email"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Email"
+                    placeholder="E-mail Address"
+                    v-model="form.email"
+                    :class="{ 'is-invalid': form.errors.email }"
+                    autocomplete="off"
                 />
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.email }"
+                >
+                    {{ form.errors.email }}
+                </div>
             </div>
 
             <div class="form-group mb-4">
                 <label>Fakultas</label>
-                <select class="custom-select" @change="onChange($event)">
+                <select
+                    class="custom-select"
+                    v-model="form.kode_fakultas"
+                    @change="onChange($event)"
+                    :class="{ 'is-invalid': form.errors.kode_fakultas }"
+                >
                     <option class="text-mute" selected disabled value="">
                         Fakultas
                     </option>
                     <option
-                        v-for="item in fakultasDaftar"
+                        v-for="item in form.fakultasDaftar"
                         :key="item.id"
                         :value="item.kode_fakultas"
                     >
                         {{ item.nama_fakultas }}
                     </option>
                 </select>
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.kode_fakultas }"
+                >
+                    {{ form.errors.kode_fakultas }}
+                </div>
             </div>
             <div class="form-group mb-4">
                 <label>Prodi</label>
-                <select class="custom-select">
+                <select
+                    class="custom-select"
+                    v-model="form.kode_prodi"
+                    :class="{ 'is-invalid': form.errors.kode_fakultas }"
+                >
                     <option class="text-mute" selected disabled value="">
                         Prodi
                     </option>
                     <option
-                        v-for="item in prodiDaftar"
+                        v-for="item in form.prodiDaftar"
                         :key="item.id"
                         :value="item.kode_jurusan"
                     >
                         {{ item.nama_jurusan }}
                     </option>
                 </select>
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.kode_prodi }"
+                >
+                    {{ form.errors.kode_prodi }}
+                </div>
             </div>
             <div class="form-group mb-4">
                 <label>Upload SK Tugas</label>
@@ -63,15 +101,28 @@
                     <input
                         type="file"
                         class="custom-file-input"
-                        id="customFile"
+                        ref="file_sk"
+                        :class="{ 'is-invalid': form.errors.file_sk }"
+                        v-on:change="videoChoosen"
                     />
-                    <label class="custom-file-label" for="customFile"
-                        >Choose file</label
-                    >
+                    <label class="custom-file-label" for="file_sk">{{
+                        filename
+                    }}</label>
+                </div>
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.file_sk }"
+                >
+                    {{ form.errors.file_sk }}
                 </div>
             </div>
         </form>
-        <button type="button" class="btn btn-default btn-flat">
+
+        <button
+            type="button"
+            @click="createOffice"
+            class="btn btn-default btn-flat"
+        >
             Kirim <i class="fab fa-telegram-plane ml-3"></i>
         </button>
     </div>
@@ -79,20 +130,28 @@
 
 <script>
 export default {
-    props: ["fakultas", "prodi"],
+    props: ["fakultas", "prodi", "errors"],
 
     data() {
         return {
-            fakultasDaftar: this.fakultas,
-            prodiDaftar: [],
+            form: this.$inertia.form({
+                nama: "",
+                email: "",
+                kode_fakultas: "",
+                kode_prodi: "",
+                fakultasDaftar: this.fakultas,
+                prodiDaftar: [],
+                file_sk: null,
+            }),
+            filename: "Pilih file",
         };
     },
     methods: {
         onChange: function (event) {
             // kosongkan
-            this.prodiDaftar = [];
+            this.form.prodiDaftar = [];
             // isi
-            this.prodiDaftar = this.prodi.filter(
+            this.form.prodiDaftar = this.prodi.filter(
                 (a) => a.kode_fakultas == event.target.value
             );
 
@@ -102,6 +161,28 @@ export default {
             //         this.prodiDaftar.push(element);
             //     }
             // });
+        },
+        videoChoosen(event) {
+            this.filename = event.target.files[0].name;
+        },
+
+        createOffice() {
+            if (this.$refs.file_sk) {
+                this.form.file_sk = this.$refs.file_sk.files[0];
+            }
+
+            this.form.post(this.route("office.store"), {
+                preserveScroll: true,
+                onSuccess: () => {
+                    this.form.reset();
+                    this.filename = "Pilih file";
+                    Swal.fire(
+                        "Berhasil!",
+                        "Silahkan cek token anda di E-Mail..!",
+                        "success"
+                    );
+                },
+            });
         },
     },
 };

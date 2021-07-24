@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Major;
+use App\Models\Office;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Helpers\Functions;
+use Illuminate\Support\Facades\Mail;
 
 class OfficeController extends Controller
 {
@@ -38,7 +41,45 @@ class OfficeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request->file_sk;
+            $token = Functions::token(20);
+
+            $this->validate($request, [
+                'nama' => ['required'],
+                'kode_fakultas' => ['required'],
+                'kode_prodi' => ['required'],
+                'email' => ['required', 'string', 'email'],
+                'file_sk' => ['required','mimes:pdf', 'max:1024'],
+            ]);
+
+
+            Mail::raw($token,  function ($message) use ($request) {
+                $message->from('office365@unm.ac.id');
+                $message->to($request->email)->subject('Token Office 365');
+            });
+    
+            $foto = $request->file('file_sk');
+            if ($foto) {
+                $extension = $foto->getClientOriginalExtension();
+                $filename =  $request->nama . '_' . time() . '.' . $extension;
+                $foto->move('file-sk/', $filename);
+                Office::create([
+                    'nama' => $request->nama,
+                    'email' => $request->email,
+                    'fakultas_id' => $request->kode_fakultas,
+                    'prodi_id' => $request->kode_prodi,
+                    'file' => $filename,
+                    'token' => $token,
+
+                ]);
+              
+            }
+    
+
+            
+          
+        return back();
+       
     }
 
     /**
@@ -49,7 +90,13 @@ class OfficeController extends Controller
      */
     public function show($id)
     {
-        //
+        $data =Office::where('token', $id)->first();
+        if ($data) {
+            return response()->json($data);
+          
+        }
+        return 3;
+        
     }
 
     /**

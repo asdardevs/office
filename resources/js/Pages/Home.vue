@@ -139,18 +139,20 @@
                 <p class="text-muted">Dikembangkan oleh</p>
                 <div class="d-flex justify-content-center mb-4">
                     <div>
-                        <img src="/lte/dist/img/unm.png" width="120px" alt="" />
+                        <img src="/lte/dist/img/unm.png" width="120" alt="" />
                     </div>
                     <div>
                         <img
                             class="ml-3"
                             src="/lte/dist/img/ict.PNG"
-                            width="40px"
+                            width="40"
                             alt=""
                         />
                     </div>
                 </div>
-                <small>Copyright ©2021 Universitas Negeri Makassar</small>
+                <small
+                    >Copyright ©{{ tahun }} Universitas Negeri Makassar</small
+                >
             </div>
         </section>
     </div>
@@ -203,6 +205,8 @@ export default {
         return {
             fakultasHome: this.fakultas,
             prodiHome: this.prodi,
+            tahun: new Date().getFullYear(),
+
             // prodis:[]
         };
     },

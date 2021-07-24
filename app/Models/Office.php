@@ -15,8 +15,21 @@ class Office extends Model
         'prodi_id',
         'file',
         'token',
-        'akun',
+        'username',
+        'password',
         'pesan',
         'status',
     ];
+
+    public function prodi()
+    {
+        return $this->belongsTo(Major::class, 'prodi_id', 'kode_jurusan');
+    }
+    public function fakultas()
+    {
+        return $this->belongsTo(Faculty::class, 'fakultas_id', 'kode_fakultas');
+    }
+
+
+
 }
