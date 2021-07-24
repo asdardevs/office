@@ -12,7 +12,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <table
-                                        id="tabel"
+                                        id="tabel-history"
                                         class="
                                             table table-bordered table-striped
                                         "
@@ -29,7 +29,7 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody id="tabel-body"></tbody>
+                                        <tbody id="tabel-body-history"></tbody>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
@@ -114,7 +114,7 @@ export default {
     },
 
     methods: {
-        getTable() {
+        getTableHistory() {
             var html = "";
             var no = 1;
             this.office.forEach((element) => {
@@ -137,10 +137,10 @@ export default {
                 </tr>`;
             });
 
-            $("#tabel-body").html(html);
+            $("#tabel-body-history").html(html);
         },
 
-        renderGetId() {
+        renderGetIdHistory() {
             var self = this;
 
             $(".validasi").click(function () {
@@ -154,12 +154,10 @@ export default {
     },
 
     mounted: function () {
-        $(document).ready(function () {
-            $("#tabel").DataTable();
-        });
+        $("#tabel-history").DataTable();
 
-        this.getTable();
-        this.renderGetId();
+        this.getTableHistory();
+        this.renderGetIdHistory();
     },
 };
 </script>
