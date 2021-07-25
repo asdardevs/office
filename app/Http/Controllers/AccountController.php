@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Office;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Yajra\DataTables\DataTables;
+// use Yajra\DataTables\DataTables;
 
 class AccountController extends Controller
 {
@@ -28,23 +28,23 @@ class AccountController extends Controller
      */
     public function create()
     {
-            $data = Office::with('fakultas','prodi')->orderBy('id', 'DESC')->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
+            // $data = Office::with('fakultas','prodi')->orderBy('id', 'DESC')->get();
+            // return DataTables::of($data)
+            //     ->addIndexColumn()
+            //     ->addColumn('action', function ($row) {
 
-                    $btn = '
-                    <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-primary edit-office" data-id="' . $row->id . '"  ><i
-                            class="fas fa-pen" aria-hidden="true"></i></button>
-                    <button type="button" class="btn btn-outline-danger " onclick="hapus(\'' . $row->id . '\'); return false;"  ><i
-                            class="fas fa-trash" aria-hidden="true"></i></button>
-                </div>
-                    ';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            //         $btn = '
+            //         <div class="d-flex justify-content-center">
+            //         <button type="button" class="btn btn-outline-primary edit-office" data-id="' . $row->id . '"  ><i
+            //                 class="fas fa-pen" aria-hidden="true"></i></button>
+            //         <button type="button" class="btn btn-outline-danger " onclick="hapus(\'' . $row->id . '\'); return false;"  ><i
+            //                 class="fas fa-trash" aria-hidden="true"></i></button>
+            //     </div>
+            //         ';
+            //         return $btn;
+            //     })
+            //     ->rawColumns(['action'])
+            //     ->make(true);
         
     }
 

@@ -11,28 +11,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <table
-                                        id="tabel-permohonan"
-                                        class="
-                                            table table-bordered table-striped
-                                        "
-                                    >
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Fakultas</th>
-                                                <th>Prodi</th>
-                                                <th>SK TUGAS</th>
-                                                <th>Status</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody
-                                            id="tabel-body-permohonan"
-                                        ></tbody>
-                                    </table>
+                                    <div id="tempel-tabel"></div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -237,7 +216,7 @@
     </div>
 </template>
 
-<script>
+<script scoped>
 import AdminLte from "@/Layouts/AdminLte";
 
 export default {
@@ -264,23 +243,23 @@ export default {
             var no = 1;
             this.office.forEach((element) => {
                 html += `<tr>
-                <th>${no++}</th>
-                <th>${element.nama}</th>
-                <th>${element.email}</th>
-                <th>${element.fakultas.nama_fakultas}</th>
-                <th>${element.prodi.nama_jurusan}</th>
-                <th><a href="/file-sk/${
+                <td>${no++}</td>
+                <td>${element.nama}</td>
+                <td>${element.email}</td>
+                <td>${element.fakultas.nama_fakultas}</td>
+                <td>${element.prodi.nama_jurusan}</td>
+                <td><a href="/file-sk/${
                     element.file
-                }"  target="_blank" class="btn btn-block btn-default btn-flat" ><i class="fas fa-file-download text-danger"></i></a></th>
-                <th> ${
+                }"  target="_blank" class="btn btn-block btn-default btn-flat" ><i class="fas fa-file-download text-danger"></i></a></td>
+                <td> ${
                     element.status == null
                         ? '<span class="badge bg-primary">Menunggu</span>'
                         : '<span class="badge bg-danger">Ditolak</span>'
-                } </th>
-                
+                } </td>
+
                ${
                    element.status == 2
-                       ? ` <th>
+                       ? ` <td>
                             <div class="row">
                               <div class="col-md-8">
                                 <button
@@ -300,9 +279,9 @@ export default {
                                 </button>
                               </div>
                             </div>
-                          </th>`
-                       : `<th><button type="button"  class="btn btn-block btn-primary btn-flat validasi" data-id="${element.id}" >Validasi</button> </th>`
-               } 
+                          </td>`
+                       : `<td><button type="button"  class="btn btn-block btn-primary btn-flat validasi" data-id="${element.id}" >Validasi</button> </td>`
+               }
 
                 </tr>`;
             });
@@ -355,12 +334,32 @@ export default {
     },
 
     mounted: function () {
-        // $(document).ready(function () {
-        $("#tabel-permohonan").DataTable();
-        // });
+        $("#tempel-tabel").html(` <table
+                                        id="tabel-permohonan"
+                                        class="
+                                            table table-bordered table-striped
+                                        "
+                                    >
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th>Fakultas</th>
+                                                <th>Prodi</th>
+                                                <th>SK TUGAS</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody
+                                            id="tabel-body-permohonan"
+                                        ></tbody>
+                                    </table>`);
         this.getTable();
         this.renderGetId();
         this.renderPeasn();
+        $("#tabel-permohonan").DataTable();
     },
 };
 </script>
