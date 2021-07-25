@@ -123,7 +123,10 @@
             @click="createOffice"
             class="btn btn-default btn-flat"
         >
-            Kirim <i class="fab fa-telegram-plane ml-3"></i>
+            <div v-if="onProgress == true">
+                <i class="fa fa-spinner fa-spin mr-1"></i>Loading
+            </div>
+            <div v-else>Kirim <i class="fab fa-telegram-plane ml-3"></i></div>
         </button>
     </div>
 </template>
@@ -144,6 +147,7 @@ export default {
                 file_sk: null,
             }),
             filename: "Pilih file",
+            onProgress: "",
         };
     },
     methods: {
@@ -167,6 +171,8 @@ export default {
         },
 
         createOffice() {
+            var self = this;
+            this.onProgress = true;
             if (this.$refs.file_sk) {
                 this.form.file_sk = this.$refs.file_sk.files[0];
             }
@@ -174,6 +180,7 @@ export default {
             this.form.post(this.route("office.store"), {
                 preserveScroll: true,
                 onSuccess: () => {
+                    self.onProgress = false;
                     this.form.reset();
                     this.filename = "Pilih file";
                     Swal.fire(
@@ -182,8 +189,21 @@ export default {
                         "success"
                     );
                 },
+                onError: (errors) => {
+                    self.onProgress = false;
+                },
             });
         },
     },
 };
 </script>
+
+<style scoped>
+.buttonload {
+    background-color: #04aa6d; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+}
+</style>
