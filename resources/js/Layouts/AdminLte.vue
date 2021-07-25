@@ -47,5 +47,6 @@ export default {
         NavBar,
         SideBar,
     },
+    mounted: function () {},
 };
 </script>

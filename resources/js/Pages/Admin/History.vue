@@ -11,26 +11,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <table
-                                        id="tabel-history"
-                                        class="
-                                            table table-bordered table-striped
-                                        "
-                                    >
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Fakultas</th>
-                                                <th>Prodi</th>
-                                                <th>SK TUGAS</th>
-                                                <th>Status</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tabel-body-history"></tbody>
-                                    </table>
+                                    <div id="tempel-tabel"></div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -119,20 +100,20 @@ export default {
             var no = 1;
             this.office.forEach((element) => {
                 html += `<tr>
-                <th>${no++}</th>
-                <th>${element.nama}</th>
-                <th>${element.email}</th>
-                <th>${element.fakultas.nama_fakultas}</th>
-                <th>${element.prodi.nama_jurusan}</th>
-                <th><a href="/file-sk/${
+                <td>${no++}</td>
+                <td>${element.nama}</td>
+                <td>${element.email}</td>
+                <td>${element.fakultas.nama_fakultas}</td>
+                <td>${element.prodi.nama_jurusan}</td>
+                <td><a href="/file-sk/${
                     element.file
-                }"  target="_blank" class="btn btn-block btn-default btn-flat" ><i class="fas fa-file-download text-danger"></i></a></th>
-                
-                <th> <span class="badge bg-success">Diterima</span></th>
-                <th><button type="button"  class="btn btn-block btn-primary btn-flat validasi" data-username="${
+                }"  target="_blank" class="btn btn-block btn-default btn-flat" ><i class="fas fa-file-download text-danger"></i></a></td>
+
+                <td> <span class="badge bg-success">Diterima</span></td>
+                <td><button type="button"  class="btn btn-block btn-primary btn-flat validasi" data-username="${
                     element.username
-                }" data-password="${element.password}" >Akun</button></th>
-               
+                }" data-password="${element.password}" >Akun</button></td>
+
 
                 </tr>`;
             });
@@ -154,10 +135,31 @@ export default {
     },
 
     mounted: function () {
-        $("#tabel-history").DataTable();
+        $("#tempel-tabel").html(`<table
+                                        id="tabel-history"
+                                        class="
+                                            table table-bordered table-striped
+                                        "
+                                    >
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th>Fakultas</th>
+                                                <th>Prodi</th>
+                                                <th>SK TUGAS</th>
+                                                <th>Status</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tabel-body-history"></tbody>
+                                    </table>`);
 
         this.getTableHistory();
         this.renderGetIdHistory();
+        $("#tabel-history").DataTable();
+        // $("#tabel-history").DataTable().rows(".modified").invalidate().draw();
     },
 };
 </script>
