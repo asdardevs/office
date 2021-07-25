@@ -41,7 +41,7 @@
         <link rel="stylesheet" href="{{url('lte')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
            <!-- Scripts -->
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased sidebar-mini control-sidebar-slide-openi" >
         @inertia
 
         @env ('local')
