@@ -112,10 +112,16 @@
                     Akun Office 365 Universitas Negeri Makassar
                 </h3>
                 <p class="text-muted">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nihil quis sed dicta excepturi quam illo doloribus, quaerat
-                    mollitia ipsam vero atque sequi provident ut eum suscipit
-                    velit dolorem consectetur dolorum.
+                    Sistem registrasi akun Office 365 UPT TIK Center UNM adalah
+                    sebuah sistem penunjang distribusi akun Office 365 untuk
+                    mahasiswa, dosen, serta pegawai UNM di lingkungan
+                    Universitas Negeri Makassar. Sistem ini diharapkan bisa
+                    memudahkan admin memvalidasi data-data mahasiswa, dosen,
+                    serta pegawai UNM yang melakukan registrasi untuk
+                    mendapatkan akun Office 365. Office 365 merupakan layanan
+                    berlangganan office berbasis cloud yang menggabungkan
+                    peralatan terbaik untuk memudahkan berbagai macam pekerjaan
+                    anda.
                 </p>
                 <img
                     class="pl-2"

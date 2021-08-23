@@ -2,10 +2,8 @@
     <div class="col-md-6 p-5" id="cek-akun">
         <h3 class="b-600">Cek Akun Office 365</h3>
         <p class="text-muted mb-5">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum
-            rem quisquam adipisci accusamus, unde voluptates ullam nostrum
-            laboriosam nihil sapiente ad? Architecto quaerat cupiditate
-            aspernatur autem reiciendis maxime, quia veniam.
+            Gunakan token yang masuk ke email anda untuk mengecek status
+            permohonan akun Office 365 anda
         </p>
         <form>
             <div class="form-group mb-4">
