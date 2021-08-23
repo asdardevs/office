@@ -2,7 +2,7 @@
     <div>
         <admin-lte>
             <template #header>
-                <h1 class="m-0">Permohonan Akun</h1>
+                <h1 class="m-0">History Akun</h1>
             </template>
             <section class="content">
                 <!-- <button class="btn btn-primary" @click="tabel">a</button> -->

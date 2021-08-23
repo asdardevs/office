@@ -1,12 +1,17 @@
 <template>
     <div class="col-md-6 p-5" id="daftar" style="background-color: #f5f5f5">
         <h3 class="b-600">Daftar Akun Office 365</h3>
-        <p class="text-muted mb-5">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum
-            rem quisquam adipisci accusamus, unde voluptates ullam nostrum
-            laboriosam nihil sapiente ad? Architecto quaerat cupiditate
-            aspernatur autem reiciendis maxime, quia veniam.
-        </p>
+        <p class="text-muted">Persayaratan Pemohon Akun Office 365 UNM</p>
+        <ul style="list-style-type: circle" class="mb-5">
+            <li class="text-muted">
+                Tendik, Dosen, dan Mahasiswa aktif UNM yang dibuktikan dengan SK
+                untuk tendik dan dosen, untuk mahasiswa dibuktikan dengan KTM
+            </li>
+            <li class="text-muted">
+                Email yang aktif untuk mahasiswa, untuk dosen gunakan email
+                @unm.ac.id yang aktif
+            </li>
+        </ul>
         <form>
             <div class="form-group mb-4">
                 <label for="nama">Nama Lengkap</label>
