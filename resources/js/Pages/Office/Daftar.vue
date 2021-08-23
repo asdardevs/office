@@ -110,6 +110,7 @@
                         :class="{ 'is-invalid': form.errors.file_sk }"
                         v-on:change="videoChoosen"
                     />
+                    <small class="text-danger mr-1">* file pdf</small>
                     <label class="custom-file-label" for="file_sk">{{
                         filename
                     }}</label>
