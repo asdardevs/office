@@ -19,6 +19,8 @@ class Office extends Model
         'password',
         'pesan',
         'status',
+        'kategori',
+        'no_identitas',
     ];
 
     public function prodi()

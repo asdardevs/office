@@ -14,6 +14,40 @@
         </ul>
         <form>
             <div class="form-group mb-4">
+                <label>Kategori</label>
+                <select class="form-control" @change="onKategori($event)">
+                    <option>Mahasiswa</option>
+                    <option>Dosen</option>
+                    <option>Pengawai</option>
+                </select>
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.kategori }"
+                >
+                    {{ form.errors.kategori }}
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <label for="no_identitas" class="text-danger">{{
+                    form.label
+                }}</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="No Indentitas"
+                    v-model="form.no_identitas"
+                    :class="{ 'is-invalid': form.errors.no_identitas }"
+                    autofocus="autofocus"
+                    autocomplete="off"
+                />
+                <div
+                    class="invalid-feedback mb-2"
+                    :class="{ 'd-block': form.errors.no_identitas }"
+                >
+                    {{ form.errors.no_identitas }}
+                </div>
+            </div>
+            <div class="form-group mb-4">
                 <label for="nama">Nama Lengkap</label>
                 <input
                     type="text"
@@ -31,6 +65,7 @@
                     {{ form.errors.nama }}
                 </div>
             </div>
+
             <div class="form-group mb-4">
                 <label for="email">E-mail</label>
                 <input
@@ -139,13 +174,16 @@
 
 <script>
 export default {
-    props: ["fakultas", "prodi", "errors"],
+    props: ["fakultas", "prodi"],
 
     data() {
         return {
             form: this.$inertia.form({
                 nama: "",
                 email: "",
+                kategori: "",
+                no_identitas: "",
+                label: "NIM",
                 kode_fakultas: "",
                 kode_prodi: "",
                 fakultasDaftar: this.fakultas,
@@ -172,6 +210,17 @@ export default {
             //     }
             // });
         },
+        onKategori: function (event) {
+            var kategori = event.target.value;
+            this.form.kategori = kategori;
+            if (kategori == "Mahasiswa") {
+                this.form.label = "NIM";
+            } else if (kategori == "Dosen") {
+                this.form.label = "NIDN";
+            } else {
+                this.form.label = "NIP";
+            }
+        },
         videoChoosen(event) {
             this.filename = event.target.files[0].name;
         },
@@ -187,6 +236,7 @@ export default {
                 preserveScroll: true,
                 onSuccess: () => {
                     self.onProgress = false;
+                    self.form.label = "NIM";
                     this.form.reset();
                     this.filename = "Pilih file";
                     Swal.fire(
