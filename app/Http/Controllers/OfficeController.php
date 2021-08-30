@@ -7,6 +7,7 @@ use App\Models\Office;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Helpers\Functions;
+use App\Rules\SpecificDomainsOnly;
 use Illuminate\Support\Facades\Mail;
 
 class OfficeController extends Controller
@@ -48,9 +49,19 @@ class OfficeController extends Controller
                 'nama' => ['required'],
                 'kode_fakultas' => ['required'],
                 'kode_prodi' => ['required'],
+                'kategori' => ['required'],
+                'no_identitas' => ['required','numeric'],
                 'email' => ['required', 'string', 'email'],
                 'file_sk' => ['required','mimes:pdf', 'max:1024'],
             ]);
+
+            if ($request->kategori == "Dosen") {
+                $this->validate($request, [
+                    'email' => [new SpecificDomainsOnly],
+                  
+                ]);
+    
+            }
 
 
             Mail::raw($token,  function ($message) use ($request) {
@@ -70,6 +81,8 @@ class OfficeController extends Controller
                     'prodi_id' => $request->kode_prodi,
                     'file' => $filename,
                     'token' => $token,
+                    'no_identitas' => $request->no_identitas,
+                    'kategori' => ($request->kategori =="Mahasiswa" ? 1 : ($request->kategori == "Dosen" ? 2 : 3)) ,
 
                 ]);
               
