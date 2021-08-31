@@ -85,7 +85,7 @@
             </div>
 
             <div class="form-group mb-4">
-                <label>Fakultas</label>
+                <label> Fakultas / Unit Kerja</label>
                 <select
                     class="custom-select"
                     v-model="form.kode_fakultas"
@@ -93,7 +93,7 @@
                     :class="{ 'is-invalid': form.errors.kode_fakultas }"
                 >
                     <option class="text-mute" selected disabled value="">
-                        Fakultas
+                        Fakultas / Unit Kerja
                     </option>
                     <option
                         v-for="item in form.fakultasDaftar"
@@ -111,14 +111,14 @@
                 </div>
             </div>
             <div class="form-group mb-4">
-                <label>Prodi</label>
+                <label>Prodi / Sub Unit Kerja</label>
                 <select
                     class="custom-select"
                     v-model="form.kode_prodi"
                     :class="{ 'is-invalid': form.errors.kode_fakultas }"
                 >
                     <option class="text-mute" selected disabled value="">
-                        Prodi
+                        Prodi / Sub Unit Kerja
                     </option>
                     <option
                         v-for="item in form.prodiDaftar"
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="form-group mb-4">
-                <label>Upload SK Tugas</label>
+                <label>Upload SK Tugas / KTM</label>
                 <div class="custom-file">
                     <input
                         type="file"

@@ -24928,7 +24928,7 @@ var _hoisted_16 = {
   "class": "form-group mb-4"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Fakultas", -1
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, " Fakultas / Unit Kerja", -1
 /* HOISTED */
 );
 
@@ -24937,7 +24937,7 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
   selected: "",
   disabled: "",
   value: ""
-}, " Fakultas ", -1
+}, " Fakultas / Unit Kerja ", -1
 /* HOISTED */
 );
 
@@ -24945,7 +24945,7 @@ var _hoisted_19 = {
   "class": "form-group mb-4"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Prodi", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Prodi / Sub Unit Kerja", -1
 /* HOISTED */
 );
 
@@ -24954,7 +24954,7 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
   selected: "",
   disabled: "",
   value: ""
-}, " Prodi ", -1
+}, " Prodi / Sub Unit Kerja ", -1
 /* HOISTED */
 );
 
@@ -24962,7 +24962,7 @@ var _hoisted_22 = {
   "class": "form-group mb-4"
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Upload SK Tugas", -1
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", null, "Upload SK Tugas / KTM", -1
 /* HOISTED */
 );
 
