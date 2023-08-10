@@ -91,7 +91,7 @@
                                 data-toggle="modal"
                                 data-target="#panduan"
                                 class="panduan"
-                                >Panduan penggunaan akun office 365 UNM
+                                >Panduan akun office 365 UNM
                                 <i class="fas fa-angle-double-right ml-3"></i
                             ></a>
                         </div>
@@ -169,7 +169,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">
-                        Panduan penggunaan office 365 UNM
+                        Panduan office 365 UNM
                     </h4>
                     <button
                         type="button"
@@ -180,10 +180,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body p-5" style="background-color: #000">
-                    <h2 class="text-center text-white">
-                        Halaman Belum Tersedia :')
-                    </h2>
+                <div class="modal-body p-5">
+                    <p>Panduan peremintaan akun office 365</p>
+                   <iframe class="mb-5" src="https://drive.google.com/file/d/1c8o5Kfz94gxe-U0833gG2XmlyMi51jOn/preview" width="100%" height="480" allow="autoplay"></iframe>
+                   <p>Panduan registrasi office 365</p>
+                   <iframe src="https://drive.google.com/file/d/1wUIDgEtBNn2aaswm52rAf-WO69NQLAOe/preview" width="100%" height="480" allow="autoplay"></iframe>
                 </div>
                 <!-- <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

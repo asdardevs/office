@@ -16,9 +16,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $office =Office::with('fakultas','prodi')->orWhere('status',null)->orWhere('status','2') ->orderBy('id', 'DESC')->get();
-       
-        return Inertia::render('Admin/Permohonan',['office'=> $office ]);
+        $office = Office::with('fakultas', 'prodi')->orWhere('status', null)->orWhere('status', '2')->orderBy('id', 'DESC')->get();
+
+        return Inertia::render('Admin/Permohonan', ['office' => $office]);
     }
 
     /**
@@ -28,24 +28,24 @@ class AccountController extends Controller
      */
     public function create()
     {
-            // $data = Office::with('fakultas','prodi')->orderBy('id', 'DESC')->get();
-            // return DataTables::of($data)
-            //     ->addIndexColumn()
-            //     ->addColumn('action', function ($row) {
+        // $data = Office::with('fakultas','prodi')->orderBy('id', 'DESC')->get();
+        // return DataTables::of($data)
+        //     ->addIndexColumn()
+        //     ->addColumn('action', function ($row) {
 
-            //         $btn = '
-            //         <div class="d-flex justify-content-center">
-            //         <button type="button" class="btn btn-outline-primary edit-office" data-id="' . $row->id . '"  ><i
-            //                 class="fas fa-pen" aria-hidden="true"></i></button>
-            //         <button type="button" class="btn btn-outline-danger " onclick="hapus(\'' . $row->id . '\'); return false;"  ><i
-            //                 class="fas fa-trash" aria-hidden="true"></i></button>
-            //     </div>
-            //         ';
-            //         return $btn;
-            //     })
-            //     ->rawColumns(['action'])
-            //     ->make(true);
-        
+        //         $btn = '
+        //         <div class="d-flex justify-content-center">
+        //         <button type="button" class="btn btn-outline-primary edit-office" data-id="' . $row->id . '"  ><i
+        //                 class="fas fa-pen" aria-hidden="true"></i></button>
+        //         <button type="button" class="btn btn-outline-danger " onclick="hapus(\'' . $row->id . '\'); return false;"  ><i
+        //                 class="fas fa-trash" aria-hidden="true"></i></button>
+        //     </div>
+        //         ';
+        //         return $btn;
+        //     })
+        //     ->rawColumns(['action'])
+        //     ->make(true);
+
     }
 
     /**
@@ -56,20 +56,21 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-       
-        
+
+
+
         $this->validate($request, [
             'status' => ['required'],
         ]);
-        
-    
+
+
         if ($request->status == 1) {
             $this->validate($request, [
                 'username' => ['required'],
                 'password' => ['required'],
-               
+
             ]);
-        }else{
+        } else {
             $this->validate($request, [
                 'alasan_penolakan' => ['required'],
                 'status' => ['required'],
@@ -77,6 +78,8 @@ class AccountController extends Controller
         }
 
 
+
+        // return $request->id;
 
         Office::where('id', $request->id)
             ->update([
@@ -86,10 +89,8 @@ class AccountController extends Controller
                 'status' => $request->status,
             ]);
 
-            return back();
-          
 
-
+        return back();
     }
 
     /**

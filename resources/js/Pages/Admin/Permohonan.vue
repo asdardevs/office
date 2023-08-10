@@ -246,6 +246,7 @@ export default {
                 <td>${no++}</td>
                 <td>${element.nama}</td>
                 <td>${element.email}</td>
+                <td>${element.no_identitas}</td>
                 <td>${element.fakultas.nama_fakultas}</td>
                 <td>${element.prodi.nama_jurusan}</td>
                 <td><a href="/file-sk/${
@@ -345,6 +346,7 @@ export default {
                                                 <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
+                                                <th>No Identitas</th>
                                                 <th>Fakultas</th>
                                                 <th>Prodi</th>
                                                 <th>SK TUGAS</th>
